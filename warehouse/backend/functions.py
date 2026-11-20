@@ -14,7 +14,7 @@ Base = declarative_base()
 USERNAME = "jyoshna"
 PASSWORD = "123"
 
-ACCESS_TOKEN_EXPIRY = 1 #mins
+ACCESS_TOKEN_EXPIRY = 30 #mins
 REFRESH_TOKEN_EXPIRY = 7*24*60
 SECRET_kEY = "SECRET123"
 ALGORITHM = "HS256"
@@ -186,7 +186,6 @@ def create_token(username, user_type, token_type):
 def verify_token(token, token_type):
     try: 
         payload = jwt.decode(jwt=token,key=SECRET_kEY,algorithms=[ALGORITHM])
-    
     except:
         return False
     if payload["token_type"] == token_type:
